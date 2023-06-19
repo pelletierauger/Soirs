@@ -1551,6 +1551,75 @@ void main() {
     gl_FragColor.rgb += roundedRectangle(uv, vec2(0. * (16./ 9.), 0.), vec2(0.11025 * (16./9.), 0.105) * 2.1 * 4.1, 0.01, 0.5) * 0.12;
     // gl_FragColor.rgb = vec3((gl_FragColor.r + gl_FragColor.g + gl_FragColor.b) / 3.);
     // gl_FragColor.r += col.r * 0.975;
+    gl_FragColor.rgb *= vec3(1.0, 0.8, 0.2);
+    // gl_FragColor.b += col.b * 0.25;
+//gl_FragColor.rgb = gl_FragColor.rbg;
+}
+// endGLSL
+`;
+textureShader.init();
+
+// The sepia of the magical thaw
+textureShader.vertText = `
+    // beginGLSL
+attribute vec3 a_position;
+attribute vec2 a_texcoord;
+varying vec2 v_texcoord;
+void main() {
+  // Multiply the position by the matrix.
+  vec4 positionVec4 = vec4(a_position, 1.0);
+  // gl_Position = a_position;
+  positionVec4.xy = positionVec4.xy * 2.0 - 1.0;
+  gl_Position = positionVec4;
+  // Pass the texcoord to the fragment shader.
+  v_texcoord = a_texcoord;
+}
+// endGLSL
+`;
+textureShader.fragText = `
+// beginGLSL
+precision mediump float;
+// Passed in from the vertex shader.
+uniform float time;
+uniform float resolution;
+varying vec2 v_texcoord;
+// The texture.
+uniform sampler2D u_texture;
+float rand(vec2 co){
+    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453 * (2.0 + sin(time)));
+}
+${blendingMath}
+    float roundedRectangle (vec2 uv, vec2 pos, vec2 size, float radius, float thickness) {
+        float d = length(max(abs(uv - pos),size) - size) - radius;
+        return smoothstep(0.66, 0.33, d / thickness * 5.0);
+    }
+void main() {
+    // vec2 uv = vec2(gl_FragCoord.xy) / vec2(1600, 1600);
+    // vec2 uv = gl_FragCoord.xy / vec2(1440., 1440.) * resolution;
+    vec2 uv = gl_FragCoord.xy / vec2(2560, 1440) * 2. / resolution - 1.;
+    uv *= vec2(16. / 9., 1.0);
+    // float rando = rand(vec2(uv.x, uv.y));
+    float rando = rand(vec2(floor(uv.x * 1280. * 0.75) * 1e-4, floor(uv.y * 720. * 0.75) * 1e-4) * 100.);
+    gl_FragColor = texture2D(u_texture, v_texcoord);
+   // gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+   // gl_FragColor.r = gl_FragColor.r * 0.5;
+   gl_FragColor.rgb = (gl_FragColor.rgb - (rando * 0.09)) * 1.;
+    vec3 col = gl_FragColor.rgb;
+        // vec3 levels = LevelsControlInputRange(gl_FragColor.rgb, 0.2, 0.95);
+        // gl_FragColor.rgb = hueShift2(gl_FragColor.rgb, 3.75);
+            vec3 bw = vec3((gl_FragColor.r + gl_FragColor.g + gl_FragColor.b) / 3.);
+        gl_FragColor.rgb = mix(gl_FragColor.rgb, bw, 1.);
+    vec3 blender = BlendSoftLight(gl_FragColor.rgb, vec3(1.0, 0.4, 0.0).brg.gbr);
+    vec3 blend = mix(gl_FragColor.rgb, blender, 1.);
+    gl_FragColor.rgb = blend.rbg * vec3(1.1, 1.25, 0.5);
+    bw = vec3((gl_FragColor.r + gl_FragColor.g + gl_FragColor.b) / 3.);
+        // gl_FragColor.rgb = mix(gl_FragColor.rgb, bw, 1.);
+    // gl_FragColor.rgb = LevelsControlInput(gl_FragColor.rgb, 0., vec3(1.), 0.75);
+    // gl_FragColor.rgb = max(vec3(0.1), gl_FragColor.rgb);
+    // gl_FragColor.rgb += roundedRectangle(uv, vec2(0.25 * (16./ 9.), 0.25), vec2(0.11 * (16./9.), 0.1025) * 2.1, 0.001, 0.25) * 0.12;
+    gl_FragColor.rgb += roundedRectangle(uv, vec2(0. * (16./ 9.), 0.), vec2(0.11025 * (16./9.), 0.105) * 2.1 * 4.1, 0.01, 0.5) * 0.12;
+    // gl_FragColor.rgb = vec3((gl_FragColor.r + gl_FragColor.g + gl_FragColor.b) / 3.);
+    // gl_FragColor.r += col.r * 0.975;
     // gl_FragColor.rgb *= 1.05;
     // gl_FragColor.b += col.b * 0.25;
 //gl_FragColor.rgb = gl_FragColor.rbg;
@@ -1558,6 +1627,7 @@ void main() {
 // endGLSL
 `;
 textureShader.init();
+
 
 let processorShader = new ShaderProgram("process");
 
