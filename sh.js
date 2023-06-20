@@ -868,6 +868,7 @@ void main() {
     // gl_FragColor.rgb += roundedRectangle(uv, vec2(0. * (16./ 9.), 0.), vec2(0.11, 0.11), 0.001, 0.25);
         // gl_FragColor = gl_FragColor.grra;
     gl_FragColor.rgb -= 0.2;
+    gl_FragColor.a *= 0.4;
         // gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);
 }
 // endGLSL
