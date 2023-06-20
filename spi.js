@@ -2169,9 +2169,10 @@ drawSwirl = function(selectedProgram) {
 }
 
 
+fullArr = [];
 nextArr = [];
 for (let i = 0 ; i < 30000; i++) {
-    fullArr.push({x: cos(i) * i, y: sin(i) * i});
+    fullArr.push({x: Math.cos(i) * i, y: Math.sin(i) * i});
     nextArr.push({x: 0, y: 0});
 }
 drawDots = function(selectedProgram) {
