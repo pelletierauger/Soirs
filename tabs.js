@@ -71,6 +71,8 @@ GrimoireTab.prototype.display = function() {
     gl.drawArrays(gl.TRIANGLES, 0, numItems);
 };
 
+ge.getTab("deux.scd").darkPixels = ge.getTab("trois.scd");
+
 }
 
 // setTabs();
