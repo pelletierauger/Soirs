@@ -761,7 +761,7 @@ float fbm(vec2 p) {
     return  0.5 + 0.5 * h;
 }
 vec3 smokeEffect(vec2 uv) {
-    float time = 2.0;
+    float time = 702.0;
     vec3 col = vec3(0.0, 0.0, 0.0);
     // time scale
     float v = 0.0002;
@@ -864,11 +864,11 @@ void main() {
     // gl_FragColor.r += 0.05;
     // gl_FragColor.rgb = vec3(1.0);
     // gl_FragColor.rgb *= 1.25;
-    gl_FragColor.rgb *= roundedRectangle(uv, vec2(0. * (16./ 9.), 0.), vec2(0.1105 * (16./9.), 0.106) * 2.1 * 4.1, 0.01, 0.5) * 1.6;    
+    gl_FragColor.rgb *= roundedRectangle(uv, vec2(0. * (16./ 9.), 0.), vec2(0.1101 * (16./9.), 0.1055) * 2.1 * 4.1, 0.01, 0.5) * 1.6;    
     // gl_FragColor.rgb += roundedRectangle(uv, vec2(0. * (16./ 9.), 0.), vec2(0.11, 0.11), 0.001, 0.25);
         // gl_FragColor = gl_FragColor.grra;
     gl_FragColor.rgb -= 0.2;
-    gl_FragColor.a *= 0.4;
+    gl_FragColor.a *= 0.8;
         // gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);
 }
 // endGLSL
