@@ -165,3 +165,25 @@ GrimoireEditor.prototype.xFadeWithZeroes = function(cA, xA0, yA0, xA1, yA1, cC, 
     }
 };
 }, 1000);
+
+
+if (false) {
+
+
+makeSpiral = function() {
+    let origin = [pmouse[0], (ge.t.scroll.y * 9) + pmouse[1]];
+    for (let i = 0; i < 200; i++) {
+        let xy = [origin[0], origin[1]];
+        xy[0] += Math.cos(i) * i * (5/3);
+        xy[1] += Math.sin(i) * i;
+        let mapSize = Math.floor(map(i, 0, 200, circular.length - 2, 3));
+        paintStatic(ge.t.name, Math.floor(xy[0]), Math.floor(xy[1]), circular[mapSize], full);
+        
+    }
+    // console.log("what up")
+    // spiraleFloue = ge.makeBlurredArray("quatre.scd", 0, ge.t.scroll.y, 109, ge.t.scroll.y + 25);
+    ge.blurCanvas("quatre.scd", 0, ge.t.scroll.y, 109, ge.t.scroll.y + 25, "quatre.scd", 0, ge.t.scroll.y + 25);
+}
+makeSpiral();
+
+}
