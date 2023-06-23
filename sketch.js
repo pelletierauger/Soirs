@@ -5,7 +5,7 @@ let gr;
 let mode = 0;
 let keysActive = true;
 let socket, cnvs, ctx, canvasDOM;
-let fileName = "/Volumes/Volumina/frames/dess-algo/ola-eau/ola-eau";
+let fileName = "/Volumes/Volumina/frames/baumes/chandelle/chandelle";
 let JSONs = [];
 let maxFrames = Infinity;
 let gl;
