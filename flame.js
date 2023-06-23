@@ -63,7 +63,7 @@ makeFlame = function() {
     candleFlame.data = a;
     let xy = [pmouse[0], (ge.t.scroll.y * 9) + pmouse[1]];
     xy = [469, (ge.t.scroll.y * 9) + 110];
-     xy = [469, (401 * 9) + 110];
+     xy = [469 + (2*7), (401 * 9) + 110];
     paintStaticAddSubstract(ge.t.name, xy[0], xy[1], candleFlame, full);
 };
 
