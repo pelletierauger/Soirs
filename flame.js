@@ -164,4 +164,4 @@ GrimoireEditor.prototype.xFadeWithZeroes = function(cA, xA0, yA0, xA1, yA1, cC, 
         }
     }
 };
-}, 1);
+}, 1000);
