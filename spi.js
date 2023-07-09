@@ -1816,7 +1816,8 @@ drawAlligatorQuietVert = function(selectedProgram) {
     // Clear the color buffer bit
     // gl.clear(gl.COLOR_BUFFER_BIT);
     // Draw the triangle
-    gl.drawArrays(gl.POINTS, 0, 147456 * 1);
+        gl.drawArrays(gl.POINTS, 0, 171675);
+    // gl.drawArrays(gl.POINTS, 0, 147456 * 1);
 }
 
 

@@ -386,7 +386,7 @@ float fbm(vec2 p) {
     return  0.5 + 0.5 * h;
 }
 vec3 smokeEffect(vec2 uv) {
-    float time = 702.0;
+    // float time = 702.0;
     vec3 col = vec3(0.0, 0.0, 0.0);
     // time scale
     float v = 0.0002;
@@ -395,7 +395,7 @@ vec3 smokeEffect(vec2 uv) {
     vec2 scale = uv * 0.5;
     vec2 turbulence = TURBULENCE * vec2(noise(vec2(uv.x * 3.5, uv.y * 3.2) * 1.), noise(vec2(uv.x * 2.2, uv.y * 1.5)));
     scale += turbulence;
-    float n1 = fbm(vec2(scale.x - abs(sin(time * v * 1000.0)), scale.y - 50.0 * abs(sin(time * v * 410.0))));
+    float n1 = fbm(vec2(scale.x - abs(sin(time * v * 10.0)), scale.y - 50.0 * abs(sin(time * v * 4.0))));
     col = mix(col, smoke, smoothstep(0.35, 0.9, n1));
     //float y = fragCoord.y/iResolution.y;
     //float fade = exp(-(y*y));
