@@ -5,7 +5,7 @@ let gr;
 let mode = 0;
 let keysActive = true;
 let socket, cnvs, ctx, canvasDOM;
-let fileName = "/Volumes/Volumina/frames/baumes/chandelle/chandelle";
+let fileName = "/Volumes/Volumina/frames/baumes/chandelle2/chandelle2";
 let JSONs = [];
 let maxFrames = Infinity;
 let gl;
