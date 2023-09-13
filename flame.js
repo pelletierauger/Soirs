@@ -127,6 +127,67 @@ drawFlame = function(canvasName, X, Y, size) {
     paintStaticAddSubstract(canvasName, xy[0], xy[1], candleFlame, full);
 };
 
+drawSmallFlame = function(canvasName, X, Y, size, oscillator = drawCount) {
+    let a = [];
+    let w = 70;
+    let hw = w/2;
+    let sizeVar = size * 50;
+    for (let y = 0; y < w; y++) {
+        a[y] = [];
+        for (let x = 0; x < w; x++) {
+            let v = dist(x, y * 0.95, hw, hw * 0.95);
+            v = (v < 20.5 + sizeVar) ? 1 : 0;
+            a[y][x] = v;
+        }
+    }
+    // Cut the ellipse to make it look like a flame.
+    let cut = 25;
+    for (let i = 0; i < a.length; i++) {
+        a[i].splice(hw - cut, cut * 2);
+    }
+    // Slice the lower part of the cut ellipse to improve the flame shape.
+    let top = 30;
+    let rest = a.length - top;
+    for (let i = top; i < rest; i++) {
+        if (i % 2 == 0) {
+            a.splice(i, 1);
+        }
+    }
+    // Pad the shape horizontally to make room for the flicker.
+    for (let i = 0; i < a.length; i++) {
+        for (let j = 0; j < 5; j++) {
+            a[i].push(0);
+            a[i].unshift(0);
+        }
+    }
+//     Remove the empty lines in the array
+    let ha = a.length / 2;
+    for (let i = a.length - 1; i > ha; i--) {
+        let del = true;
+        for (let j = 0; j < a[i].length; j++) {
+            if (a[i][j] == 1) {del = false};
+        }
+        if (del) {
+            a.splice(i, 1);
+        }
+    }
+    // Make the flame flicker
+    for (let i = a.length - 1; i > 0; i--) {
+        let rw = map(i, a.length, 0, 0, a.length);
+        rw *= Math.sin(i * 0.1 + drawCount);
+        // rw += Math.sin(i * 0.01 + drawCount * 0.1) * rw * 1;
+        rw *= openSimplex.noise2D(oscillator * 1e-1, oscillator * 1e-1 + 1000);
+        a[i].rotate(Math.floor(rw * 0.35));
+    }
+    candleFlame.anchor = [hw, a.length];
+    candleFlame.data = a;
+    let xy = [pmouse[0], (ge.t.scroll.y * 9) + pmouse[1]];
+    xy = [469, (ge.t.scroll.y * 9) + 110];
+     xy = [469 + (2*7), (401 * 9) + 110];
+     xy = [X, Y];
+    paintStaticAddSubstract(canvasName, xy[0], xy[1], candleFlame, full);
+};
+
 Array.prototype.rotate = (function() {
     // save references to array functions to make lookup faster
     var push = Array.prototype.push,
