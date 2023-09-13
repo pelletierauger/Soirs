@@ -259,13 +259,19 @@ ge.getTab("deux.scd").display = function() {
     for (let i = 0; i < 13; i++) {
         fs.push(openSimplex.noise2D(drawCount * 0.5e-1, drawCount * 0.5e-1 + 1000 * i) * 0.5 + 0.5);
     }
-    drawSmallFlame("deux.scd", 128+25, 48 + (647*9), 0.1 + fs[0]*0.2, drawCount + 1e4);
-    drawSmallFlame("deux.scd", 180+25, 46 + (647*9), 0.11 + fs[1]*0.2);
-    drawSmallFlame("deux.scd", 214+25, 49 + (647*9), 0.12 + fs[2]*0.2, drawCount + 1e3);
-    drawSmallFlame("deux.scd", 265+25, 43 + (647*9), 0.125 + fs[3]*0.1, drawCount + 1e2);
-    drawSmallFlame("deux.scd", 289+25, 43 + (647*9), 0.12 + fs[4]*0.1, drawCount + 1e1);
-    drawSmallFlame("deux.scd", 324+25, 35 + (647*9), 0.11 + fs[5]*0.12, drawCount - 1e1);
-    drawSmallFlame("deux.scd", 378+25, 29 + (647*9), 0.18, drawCount - 1e2);
+    drawSmallFlame("deux.scd", 128+25, 48 + (647*9), 0.1+ 0.02 + fs[0]*0.2*0.5, drawCount + 1e4);
+    drawSmallFlame("deux.scd", 180+25, 46 + (647*9), 0.11+ 0.02 + fs[1]*0.2*0.5);
+    drawSmallFlame("deux.scd", 214+25, 49 + (647*9), 0.12+ 0.02 + fs[2]*0.2*0.5, drawCount + 1e3);
+    drawSmallFlame("deux.scd", 265+25, 43 + (647*9), 0.125+ 0.02 + fs[3]*0.1*0.5, drawCount + 1e2);
+    drawSmallFlame("deux.scd", 289+25, 43 + (647*9), 0.12+ 0.02 + fs[4]*0.1*0.5, drawCount + 1e1);
+    drawSmallFlame("deux.scd", 324+25, 35 + (647*9), 0.11 + 0.02+ fs[5]*0.12*0.5, drawCount - 1e1);
+    drawSmallFlame("deux.scd", 378+25, 29 + (647*9), 0.15 + 0.02+ fs[6]*0.05*0.5, drawCount - 1e2);
+    drawSmallFlame("deux.scd", 434+25, 37 + (647*9), 0.12 + 0.02+ fs[7]*0.12*0.5, drawCount - 1e3);
+    drawSmallFlame("deux.scd", 462+25, 37 + (647*9), 0.12 + 0.02+ fs[8]*0.12*0.5, drawCount - 1e4);
+    drawSmallFlame("deux.scd", 491+25, 49 + (647*9), 0.12 + 0.02+ fs[9]*0.12*0.5, drawCount - 1e5);
+    drawSmallFlame("deux.scd", 536+25, 50 + (647*9), 0.12 + 0.02+ fs[10]*0.12*0.5, drawCount - 2e5);
+    drawSmallFlame("deux.scd", 567+25, 47 + (647*9), 0.13 + 0.02+ fs[11]*0.12*0.5, drawCount - 3e5);
+    drawSmallFlame("deux.scd", 622+6, 54 + (647*9), 0.15 + 0.02+ fs[12]*0.12*0.5, drawCount - 4e5);
     drawTerminal(currentProgram);
     // drawSwirl(currentProgram);
     // drawPulsar(currentProgram);

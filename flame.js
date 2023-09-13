@@ -177,7 +177,7 @@ drawSmallFlame = function(canvasName, X, Y, size, oscillator = drawCount) {
         rw *= Math.sin(i * 0.1 + drawCount);
         // rw += Math.sin(i * 0.01 + drawCount * 0.1) * rw * 1;
         rw *= openSimplex.noise2D(oscillator * 1e-1, oscillator * 1e-1 + 1000);
-        a[i].rotate(Math.floor(rw * 0.35));
+        a[i].rotate(Math.floor(rw * 0.25));
     }
     candleFlame.anchor = [hw, a.length];
     candleFlame.data = a;
