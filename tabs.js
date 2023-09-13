@@ -243,7 +243,7 @@ ge.getTab("deux.scd").display = function() {
     // draw the scene, presumably on a framebuffer
     let currentProgram = getProgram("pulsar-fog");
     gl.useProgram(currentProgram);
-    // drawBG(currentProgram);
+    drawBG(currentProgram);
     // currentProgram = getProgram("new-flickering-dots-vert");
     // gl.useProgram(currentProgram);
     // drawAlligatorQuietVert(currentProgram);
@@ -257,7 +257,7 @@ ge.getTab("deux.scd").display = function() {
     gl.useProgram(currentProgram);
     let fs = [];
     for (let i = 0; i < 13; i++) {
-        fs.push(openSimplex.noise2D(drawCount * 0.5e-1, drawCount * 0.5e-1 + 1000 * i) * 0.5 + 0.5);
+        fs.push(openSimplex.noise2D(drawCount * 0.5e-1, drawCount * 0.5e-1 + 1000 * i) * 0.5 + 1);
     }
     drawSmallFlame("deux.scd", 128+25, 48 + (647*9), 0.1+ 0.02 + fs[0]*0.2*0.5, drawCount + 1e4);
     drawSmallFlame("deux.scd", 180+25, 46 + (647*9), 0.11+ 0.02 + fs[1]*0.2*0.5);
@@ -270,7 +270,7 @@ ge.getTab("deux.scd").display = function() {
     drawSmallFlame("deux.scd", 462+25, 37 + (647*9), 0.12 + 0.02+ fs[8]*0.12*0.5, drawCount - 1e4);
     drawSmallFlame("deux.scd", 491+25, 49 + (647*9), 0.12 + 0.02+ fs[9]*0.12*0.5, drawCount - 1e5);
     drawSmallFlame("deux.scd", 536+25, 50 + (647*9), 0.12 + 0.02+ fs[10]*0.12*0.5, drawCount - 2e5);
-    drawSmallFlame("deux.scd", 567+25, 47 + (647*9), 0.13 + 0.02+ fs[11]*0.12*0.5, drawCount - 3e5);
+    drawSmallFlame("deux.scd", 567+25, 48 + (647*9), 0.13 + 0.02+ fs[11]*0.12*0.5, drawCount - 3e5);
     drawSmallFlame("deux.scd", 622+6, 54 + (647*9), 0.15 + 0.02+ fs[12]*0.12*0.5, drawCount - 4e5);
     drawTerminal(currentProgram);
     // drawSwirl(currentProgram);

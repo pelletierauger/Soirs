@@ -135,7 +135,7 @@ drawSmallFlame = function(canvasName, X, Y, size, oscillator = drawCount) {
     for (let y = 0; y < w; y++) {
         a[y] = [];
         for (let x = 0; x < w; x++) {
-            let v = dist(x, y * 0.95, hw, hw * 0.95);
+            let v = dist(x, y * 0.7, hw, hw * 0.7);
             v = (v < 20.5 + sizeVar) ? 1 : 0;
             a[y][x] = v;
         }
@@ -149,8 +149,8 @@ drawSmallFlame = function(canvasName, X, Y, size, oscillator = drawCount) {
     let top = 30;
     let rest = a.length - top;
     for (let i = top; i < rest; i++) {
-        if (i % 2 == 0) {
-            a.splice(i, 1);
+        if (i % 2 == 0 || i % 3 == 0 || i % 7 == 0) {
+            a.splice(i, 3);
         }
     }
     // Pad the shape horizontally to make room for the flicker.
